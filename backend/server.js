@@ -4,13 +4,13 @@ const { Client } = require('pg');
 const { hashPassword } = require('./utils/hash');
 
 const client = new Client({
-  host: 'db.zwjujpjlisnynghmhioj.supabase.co',
-  port: 5432,
-  user: 'postgres',
-  password: 'fiszi3-timwoN-sepvik',
-  database: 'postgres',
-  ssl: { rejectUnauthorized: false }
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false } // needed for Supabase
 });
+
+client.connect()
+  .then(() => console.log('Database connected!'))
+  .catch(err => console.error('DB connection error', err));
 
 client.connect();
 
