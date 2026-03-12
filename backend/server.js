@@ -36,7 +36,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Respond to preflight requests for all routes
-app.options("*", cors(corsOptions));
+app.options("/*", cors(corsOptions));
 
 app.post('/signup', async(req, res) => {
   const { username, password } = req.body;
