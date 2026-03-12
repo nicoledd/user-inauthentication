@@ -16,7 +16,7 @@ function Congrats({ setIsLoggedIn , setCurrentUser, currentUser }) {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch("http://localhost:3000/users");
+        const res = await fetch("https://user-inauthentication.onrender.com/users");
         if (!res.ok) throw new Error("Failed to fetch users");
         const data = await res.json();
         setUsers(data);
@@ -41,7 +41,7 @@ function Congrats({ setIsLoggedIn , setCurrentUser, currentUser }) {
     if (!window.confirm(message)) return;
 
     try {
-        const res = await fetch(`http://localhost:3000/users/${id}`, {
+        const res = await fetch(`https://user-inauthentication.onrender.com/users/${id}`, {
         method: "DELETE",
         });
 
