@@ -12,8 +12,6 @@ client.connect()
   .then(() => console.log('Database connected!'))
   .catch(err => console.error('DB connection error', err));
 
-client.connect();
-
 const app = express();
 app.use(express.json());
 
