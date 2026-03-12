@@ -20,7 +20,7 @@ const cors = require("cors");
 const allowedOrigins = ["https://user-inauthentication.vercel.app"];
 
 const corsOptions = {
-  origin: function(origin, callback) {
+  origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -32,11 +32,14 @@ const corsOptions = {
   credentials: true,
 };
 
-// Apply CORS to all routes
+// Apply CORS globally
 app.use(cors(corsOptions));
 
-// Respond to preflight requests for all routes
-app.options("/*", cors(corsOptions));
+// Example route
+app.get("/", (req, res) => res.send("Hello world"));
+
+// Catch-all route for unknown paths
+app.all("*", (req, res) => res.status(404).send("Not found"));
 
 app.post('/signup', async(req, res) => {
   const { username, password } = req.body;
