@@ -16,11 +16,27 @@ const app = express();
 app.use(express.json());
 
 const cors = require("cors");
-app.use(cors({
-  origin: "https://user-inauthentication.vercel.app",
-  methods: ["GET", "POST"],
-  credentials: true
-}));
+
+const allowedOrigins = ["https://user-inauthentication.vercel.app"];
+
+const corsOptions = {
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type"],
+  credentials: true,
+};
+
+// Apply CORS to all routes
+app.use(cors(corsOptions));
+
+// Respond to preflight requests for all routes
+app.options("*", cors(corsOptions));
 
 app.post('/signup', async(req, res) => {
   const { username, password } = req.body;
