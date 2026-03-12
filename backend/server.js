@@ -16,7 +16,11 @@ const app = express();
 app.use(express.json());
 
 const cors = require("cors");
-app.use(cors());
+app.use(cors({
+  origin: "https://user-inauthentication.vercel.app",
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 
 app.post('/signup', async(req, res) => {
   const { username, password } = req.body;
@@ -111,6 +115,7 @@ app.get("/", (req, res) => {
   res.send("<h1>Backend is running!</h1>");
 });
 
-app.listen(3000, "0.0.0.0", () => {
-  console.log("Server running on port 3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
 });
