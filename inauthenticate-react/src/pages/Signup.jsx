@@ -70,6 +70,7 @@ function Signup() {
             <button type="submit">Create Account</button>
         </div>
       </form>
+      {errorMessage && <div style={{ color: "red", marginBottom: "20px" }}>{errorMessage}</div>}
       <div style={fieldStyle}>
         <Link to="/">Already have an account? Login</Link>
       </div>
