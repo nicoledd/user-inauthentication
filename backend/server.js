@@ -36,7 +36,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Catch-all route for unknown paths
-app.all("/*", (req, res) => res.status(404).send("Not found"));
+app.use((req, res) => res.status(404).send("Not found"));
 
 app.post('/signup', async(req, res) => {
   const { username, password } = req.body;
