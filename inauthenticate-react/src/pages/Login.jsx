@@ -27,7 +27,7 @@ function Login({ setIsLoggedIn , setCurrentUser }) {
       } else if (data.error === "USERNAME_NOT_FOUND") {
         setErrorMessage("Yikes, that username doesn't exist! Here are some things you can try instead: " + data.username.join(", "));
       } else if (data.error === "INCORRECT_PASSWORD") {
-        setErrorMessage("Oops, you don't know your own password! Hint: " + data.password);
+        setErrorMessage("Oops, you don't know your own password! Here's a hint: " + data.password);
       }
     } catch (err) {
       console.error(err);
@@ -41,6 +41,7 @@ function Login({ setIsLoggedIn , setCurrentUser }) {
   return (
     <div style={formWrapperStyle}>
       <h1>Login</h1>
+      <h2>A user friendly login service 🤗</h2>
 
       <form onSubmit={handleSubmit}>
         <div style={fieldStyle}>

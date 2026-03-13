@@ -4,10 +4,17 @@ import { Link, useNavigate } from "react-router-dom";
 function Signup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if(password !== confirmPassword){
+        setErrorMessage("Passwords do not match!");
+        return;
+    }
 
     const res = await fetch("https://user-inauthentication.onrender.com/signup", {
       method: "POST",
@@ -47,6 +54,15 @@ function Signup() {
             placeholder="Password"
             value={password}
             onChange={(e)=>setPassword(e.target.value)}
+            />
+        </div>
+
+        <div style={fieldStyle}>
+            <input
+            type="password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e)=>setConfirmPassword(e.target.value)}
             />
         </div>
 
