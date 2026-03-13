@@ -11,6 +11,19 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const cleanUsername = username.trim();
+    const cleanPassword = password.trim();
+
+    if (!cleanUsername) {
+      setErrorMessage("Username cannot be empty.");
+      return;
+    }
+
+    if (!cleanPassword) {
+      setErrorMessage("Password cannot be empty.");
+      return;
+    }
+
     if(password !== confirmPassword){
         setErrorMessage("Passwords do not match!");
         return;
