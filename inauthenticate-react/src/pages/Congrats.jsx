@@ -42,7 +42,7 @@ function Congrats({ setIsLoggedIn , setCurrentUser, currentUser }) {
 
     try {
         const res = await fetch(`https://user-inauthentication.onrender.com/users/${id}`, {
-        method: "DELETE",
+          method: "DELETE",
         });
 
         if (!res.ok) {
