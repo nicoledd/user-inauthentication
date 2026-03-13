@@ -35,9 +35,6 @@ const corsOptions = {
 // Apply CORS globally
 app.use(cors(corsOptions));
 
-// Catch-all route for unknown paths
-app.use((req, res) => res.status(404).send("Not found"));
-
 app.post('/signup', async(req, res) => {
   const { username, password } = req.body;
   if(!username || !password){
@@ -130,6 +127,9 @@ app.delete("/users/:id", async (req, res) => {
 app.get("/", (req, res) => {
   res.send("<h1>Backend is running!</h1>");
 });
+
+// Catch-all route for unknown paths
+app.use((req, res) => res.status(404).send("Not found"));
 
 const PORT = process.env.PORT;
 app.listen(PORT, "0.0.0.0", () => {
