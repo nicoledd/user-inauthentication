@@ -96,7 +96,11 @@ app.post("/login", async(req, res) => {
 
 app.get("/users", async (req, res) => {
   try {
-    const result = await client.query('SELECT * FROM users');
+
+    const result = await client.query({
+      text: "SELECT * FROM users",
+      statement_timeout: 5000
+    });
     return res.status(200).json(result.rows);
   } catch (err) {
     console.error(err);
