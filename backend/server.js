@@ -35,11 +35,8 @@ const corsOptions = {
 // Apply CORS globally
 app.use(cors(corsOptions));
 
-// Example route
-app.get("/", (req, res) => res.send("Hello world"));
-
 // Catch-all route for unknown paths
-app.all("*", (req, res) => res.status(404).send("Not found"));
+app.all("/*", (req, res) => res.status(404).send("Not found"));
 
 app.post('/signup', async(req, res) => {
   const { username, password } = req.body;
